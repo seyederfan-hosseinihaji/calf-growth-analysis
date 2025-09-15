@@ -15,30 +15,27 @@ data_frame <- data.frame(
   Grew = rep(NA, 5)
 )
 
-# I used a for loop to calculate RGR for each row in data frame separately using (i in 1:5)
-for (i in 1:5) {
-  #If the initial and final body weights are entered correctly and are greater than 0, and if t1 and t2 are also entered correctly:
-  if (data_frame$Initial_BW[i] > 0 &
-      data_frame$Final_BW[i] > 0 &
-      data_frame$t2[i] > data_frame$t1[i])
-    {
-    #RGR is calculated using the following formula: RGR = (log(Final_BW) - log(Initial_BW)) / (t2 - t1)
-    data_frame$RGR[i] = (log(data_frame$Final_BW[i]) - log(data_frame$Initial_BW[i])) / (data_frame$t2[i] - data_frame$t1[i])
-  } else if (data_frame$Initial_BW[i] <= 0) 
-    {
-    print("Initial_BW is less than or equal to 0")
+# I used a for loop to calculate RGR for each row in data frame separately
+for (i in 1:nrow(data_frame)) {
+  if (data_frame$Initial_BW[i] <= 0) {
+    print(paste("initial_BW for", data_frame$ID[i], "is less than or equal to 0" ))
+  } else if (data_frame$Final_BW[i] <= 0) {
+    print(paste("Final_BW for", data_frame$ID[i], "is less than or equal to 0"))
+  } else if (data_frame$t2[i] < data_frame$t1[i]) {
+    print(paste("t2 for", data_frame$ID[i], "is less than or equal to t1"))
+  } else {
+    data_frame$RGR[i] <- (log(data_frame$Final_BW[i]) - log(data_frame$Initial_BW[i])) / 
+      (data_frame$t2[i] - data_frame$t1[i])
   }
 }
 
 for (i in 1:5) {
   if (data_frame$Initial_BW[i] > 0 &
       data_frame$Final_BW[i] > 0 &
-      data_frame$t2[i] > data_frame$t1[i])
-  {
+      data_frame$t2[i] > data_frame$t1[i]) {
     data_frame$Grew[i] = isTRUE(data_frame$Initial_BW[i] < data_frame$Final_BW[i] )
   }
 }
 
-
-
-
+#to view data_frame in a separate tab
+View(data_frame)
