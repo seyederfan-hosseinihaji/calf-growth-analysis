@@ -46,6 +46,22 @@ for (i in 1:nrow(data_frame)) {
   }
 }
 
+#set the 'counter' variable for the following while loop to 1 to start from the first row
+counter <- 1
+
+#while 'counter' is less than or equal to 'nrow(data_frame)', the body of the loop will run
+#in other words, if counter <= 5, the body of the loop will run until counter > 5
+while ( counter <= nrow(data_frame)) {
+  
+  #by using print() and paste(), I wrote a line of code to give a summary of each calf's condition
+  print(paste("calf", data_frame$ID[counter], "with initial body weight of",
+              data_frame$Initial_BW[counter], "and final body weight of",
+              data_frame$Final_BW[counter],"has RGR =", data_frame$RGR[counter],
+              "and the Grew =", data_frame$Grew[counter]))
+  
+  #increment the 'counter' variable by 1 to move to the next row
+  counter <- counter + 1
+}
 
 #to view data_frame in a separate tab
 View(data_frame)
