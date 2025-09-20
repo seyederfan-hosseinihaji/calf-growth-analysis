@@ -1,3 +1,8 @@
+###################################
+# This is a practice project. Comments are deliberately detailed to enhance my learning.
+# I understand this level of commenting may be excessive for professional code.
+###################################
+
 data_frame <- data.frame(
   #calves ID
   ID = c("c1", "c2", "c3", "c4", "c5"),
@@ -62,6 +67,16 @@ while ( counter <= nrow(data_frame)) {
   #increment the 'counter' variable by 1 to move to the next row
   counter <- counter + 1
 }
+
+# mean Relative Growth Rate
+mean_RGR <- round(mean(data_frame$RGR, na.rm = TRUE),3)
+
+# number of calves that grew
+grew_number <- sum(data_frame$Grew, na.rm = TRUE)
+
+# % grew
+perc_grew <- round(grew_number / sum(!is.na(data_frame$Grew)) * 100, 1)
+
 
 #to view data_frame in a separate tab
 View(data_frame)
