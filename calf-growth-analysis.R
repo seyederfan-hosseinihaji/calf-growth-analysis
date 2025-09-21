@@ -38,9 +38,9 @@ for (i in 1:nrow(data_frame)) {
     warning(paste("Final_BW for", data_frame$ID[i], "is less than or equal to 0"))
     
     #It will show a warning if t2 is less than t1 for a specific row
-  } else if (data_frame$t2[i] < data_frame$t1[i]) {
+  } else if (data_frame$t2[i] <= data_frame$t1[i]) {
     warning(paste("t2 for", data_frame$ID[i], "is less than or equal to t1"))
-    
+ 
     #If the data passes the above checks, it proceeds to the final calculation of RGR
   } else {
     data_frame$RGR[i] = round((log(data_frame$Final_BW[i]) - log(data_frame$Initial_BW[i])) / 
@@ -62,7 +62,7 @@ while ( counter <= nrow(data_frame)) {
   print(paste("calf", data_frame$ID[counter], "with initial body weight of",
               data_frame$Initial_BW[counter], "and final body weight of",
               data_frame$Final_BW[counter],"has RGR =", data_frame$RGR[counter],
-              "and the Grew =", data_frame$Grew[counter]))
+              "and Grew =", data_frame$Grew[counter]))
   
   #increment the 'counter' variable by 1 to move to the next row
   counter <- counter + 1
@@ -75,8 +75,20 @@ mean_RGR <- round(mean(data_frame$RGR, na.rm = TRUE),3)
 grew_number <- sum(data_frame$Grew, na.rm = TRUE)
 
 # % grew
-perc_grew <- round(grew_number / sum(!is.na(data_frame$Grew)) * 100, 1)
+perc_grew <- round(grew_number / nrow(data_frame) * 100, 1)
 
+# Adds a new column to the table named ADG (Average Daily Gain)
+data_frame$ADG <- (data_frame$Final_BW - data_frame$Initial_BW) /
+  (data_frame$t2 - data_frame$t1 )
+
+#Mean ADG (Average Daily Gain)
+mean_ADG <- round(mean(data_frame$ADG, na.rm = TRUE), 3)
+
+#Print herd summary
+cat("-----HERD SUMMARY-----\n")
+cat("Mean RGR (day^-1):", mean_RGR, "\n" )
+cat("Mean ADG (Average Daily Gain):", mean_ADG, "\n")
+cat("calves that grew:", grew_number, "of", nrow(data_frame), "(", perc_grew, "% )")
 
 #to view data_frame in a separate tab
 View(data_frame)
