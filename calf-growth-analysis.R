@@ -92,3 +92,9 @@ cat("calves that grew:", grew_number, "of", nrow(data_frame), "(", perc_grew, "%
 
 #to view data_frame in a separate tab
 View(data_frame)
+
+#export the data frame to a CSV file
+write.csv(data_frame, file = "herd_Growth_summary.csv", row.names = FALSE)
+
+#shows the .csv file location
+cat("File exported successfully to:", getwd(), "/herd_Growth_summary.csv\n")
