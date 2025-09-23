@@ -1,8 +1,10 @@
 # Calf Growth Analysis
 
+These lines of code allow you to calculate Relative Growth Rate (RGR) and Average Daily Gain (ADG) for a herd of any type of livestock, such as beef cattle, sheep, goats, etc."
+
 ## Overview
 
-This project is designed to analyze calf growth for a small scale herd. It calculates metrics including **Relative Growth Rate (RGR**) and **Average Daily Gain (ADG)** for each calf and the whole herd.
+This project is designed to analyze calf growth in a small-scale herd. It calculates key metrics, including **Relative Growth Rate (RGR)** and **Average Daily Gain (ADG)**, for each calf and for the herd as a whole.
 
 ## Features
 
@@ -26,5 +28,5 @@ In R:
 
 ## Notes
 
--   Code includes warnings for invalid inputs (For example if initial or final body weight ≤ 0, t2 ≤ t1)
+-   Code includes warnings for invalid inputs (For example, if initial or final body weight ≤ 0, t2 ≤ t1)
 -   This project can be used for other livestock growth studies
