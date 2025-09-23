@@ -78,8 +78,8 @@ grew_number <- sum(data_frame$Grew, na.rm = TRUE)
 perc_grew <- round(grew_number / nrow(data_frame) * 100, 1)
 
 # Adds a new column to the table named ADG (Average Daily Gain)
-data_frame$ADG <- (data_frame$Final_BW - data_frame$Initial_BW) /
-  (data_frame$t2 - data_frame$t1 )
+data_frame$ADG <- round((data_frame$Final_BW - data_frame$Initial_BW) /
+  (data_frame$t2 - data_frame$t1 ), 3)
 
 #Mean ADG (Average Daily Gain)
 mean_ADG <- round(mean(data_frame$ADG, na.rm = TRUE), 3)
